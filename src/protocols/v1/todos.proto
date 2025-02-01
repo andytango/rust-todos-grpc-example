@@ -1,0 +1,59 @@
+syntax = "proto3";
+package example.v1.todos;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+service TodoService {
+  rpc ListTodos (ListTodosRequest) returns (ListTodosResponse) {}
+  rpc GetTodo (GetTodoRequest) returns (GetTodoResponse) {}
+  rpc CreateTodo (CreateTodoRequest) returns (CreateTodoResponse) {}
+  rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  rpc DeleteTodo (DeleteTodoRequest) returns (DeleteTodoResponse) {}
+}
+
+message ListTodosRequest {}
+
+message ListTodosResponse {
+  repeated Todo todos = 1;
+}
+
+message GetTodoRequest {
+  string todo_id = 1;
+}
+
+message GetTodoResponse {
+  Todo todo = 1;
+}
+
+message CreateTodoRequest {
+  Todo todo = 1;
+}
+
+message CreateTodoResponse {
+  Todo todo = 1;
+}
+
+message UpdateTodoRequest {
+  Todo todo = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateTodoResponse {
+  Todo todo = 1;
+}
+
+message DeleteTodoRequest {
+  string todo_id = 1;
+}
+
+message DeleteTodoResponse {}
+
+message Todo {
+  string todo_id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
