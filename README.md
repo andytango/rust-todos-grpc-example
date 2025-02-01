@@ -1,4 +1,4 @@
-# Rust Service Template
+# Rust Todos gRPC Example Server
 
 This repository provides a template for building a Rust service using Tonic for
 gRPC, SQLx for database interaction (PostgreSQL), and dotenv for environment
