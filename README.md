@@ -20,7 +20,8 @@ to be a starting point for building more complex services.
 - For linux (debian or ubuntu), the following APT packages: `build-essential`,
   `lib-ssl-dev`, `pkg-config`
 - [Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation). The
-  version from APT appears to work fine.Rust toolchain. On mac OS this can be
+  version from APT appears to work fine.
+- Rust toolchain. On mac OS this can be
   installed using [homebrew](https://brew.sh).
 
 ## Codebase Structure
