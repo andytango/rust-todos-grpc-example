@@ -42,10 +42,15 @@ async fn main() -> anyhow::Result<()> {
 async fn generate_docs() -> anyhow::Result<()> {
   info!("Generating docs...");
   let version = "1.5.1";
-  let url = get_protoc_gen_doc_url(version, &get_protoc_gen_doc_suffix());
+  let platform = get_protoc_gen_doc_suffix();
+  let url = get_protoc_gen_doc_url(version, &platform);
   let tmp_dir = tempdir()?;
   let tmp_dir_path = tmp_dir.path();
 
+  info!(
+    "Downloading protoc-gen-doc version {} for {}",
+    version, platform
+  );
   let response = reqwest::get(url).await?;
   let reader = response
     .bytes_stream()
@@ -87,6 +92,7 @@ async fn generate_docs() -> anyhow::Result<()> {
     }
   }
 
+  info!("Running protoc-gen-doc...");
   let result = std::process::Command::new("protoc")
     .arg(format!("--doc_out={}", out_dir_path))
     .arg("--doc_opt=markdown,index.md")
@@ -94,10 +100,11 @@ async fn generate_docs() -> anyhow::Result<()> {
     .args(paths)
     .output()?;
 
-  info!("protoc exited with status: {}", result.status);
+  debug!("protoc exited with status: {}", result.status);
   debug!("stdout: {}", String::from_utf8_lossy(&result.stdout));
   debug!("stderr: {}", String::from_utf8_lossy(&result.stderr));
 
+  info!("Generated docs in {}", out_dir_path);
   Ok(())
 }
 
