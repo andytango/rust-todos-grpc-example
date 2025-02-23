@@ -4,56 +4,91 @@ package example.v1.todos;
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
+// Service for managing todos,
 service TodoService {
+  // List all todos
   rpc ListTodos (ListTodosRequest) returns (ListTodosResponse) {}
+  // Geta a single todo by its ID
   rpc GetTodo (GetTodoRequest) returns (GetTodoResponse) {}
+  // Create a new todo
   rpc CreateTodo (CreateTodoRequest) returns (CreateTodoResponse) {}
+  // Update an existing todo by its ID
   rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  // Delete an existing todo by its ID
   rpc DeleteTodo (DeleteTodoRequest) returns (DeleteTodoResponse) {}
 }
 
+// Request message for ListTodos. Placeholder for filters, pagination and
+// ordering.
 message ListTodosRequest {}
 
+// Response message for ListTodos.
 message ListTodosResponse {
+  // The list of todos requested.
   repeated Todo todos = 1;
 }
 
+// Request message for GetTodo.
 message GetTodoRequest {
+  // The ID of the todo to retrieve.
   string todo_id = 1;
 }
 
+// Response message for GetTodo. Contains the todo.
 message GetTodoResponse {
+  // The todo that was retrieved.
   Todo todo = 1;
 }
 
+// Request message for CreateTodo.
 message CreateTodoRequest {
+  // The todo to create.
   Todo todo = 1;
 }
 
+// Response message for CreateTodo.
 message CreateTodoResponse {
+  // The created todo.
   Todo todo = 1;
 }
 
+// Request message for UpdateTodo. Contains the todo to update and a field mask
+// indicating which fields should be updated.
 message UpdateTodoRequest {
+  // The todo to update.
   Todo todo = 1;
+  // The field mask indicating which fields should be updated.
   google.protobuf.FieldMask update_mask = 2;
 }
 
+// Response message for UpdateTodo.
 message UpdateTodoResponse {
+  // The updated todo.
   Todo todo = 1;
 }
 
+// Request message for DeleteTodo.
 message DeleteTodoRequest {
+  // The ID of the todo to delete.
   string todo_id = 1;
 }
 
+// Response message for DeleteTodo. Placeholder, could contain the deleted todo
+// if needed, or other status information.
 message DeleteTodoResponse {}
 
+// Todo message.
 message Todo {
+  // The ID of the todo.
   string todo_id = 1;
+  // The title of the todo.
   string title = 2;
+  // The description of the todo.
   string description = 3;
+  // Whether the todo is completed.
   bool completed = 4;
+  // The time the todo was created.
   google.protobuf.Timestamp created_at = 5;
+  // The time the todo was last updated.
   google.protobuf.Timestamp updated_at = 6;
 }
