@@ -120,3 +120,30 @@ cargo run --bin server
 
 Refer to the SQLx documentation for more detailed information about the CLI and
 its capabilities.
+
+## Generating Protobuf Documentation
+
+This repository includes a command-line interface (CLI) tool located at `src/bin/cli.rs` that can generate documentation for your Protocol Buffer (`.proto`) files. This documentation is generated in Markdown format and is particularly useful for understanding the structure and capabilities of your gRPC services.
+
+### How to use the CLI tool
+
+You can run (and build, if needed) the CLI tool with the `generate-docs` command to create the documentation:
+
+```bash
+cargo run --bin cli -- generate-docs
+```
+
+### Understanding the process
+
+    When you run the `generate-docs` command, the following steps occur:
+
+*   **Downloads `protoc-gen-doc`:** The tool automatically downloads the `protoc-gen-doc` binary, a plugin for the Protocol Buffer compiler (`protoc`), from GitHub releases. The correct version for your operating system and architecture (Linux/macOS, x86\_64/arm64) is selected automatically.
+*   **Extracts the Binary:** The downloaded file, which is a compressed archive (`.tar.gz`), is extracted to a temporary directory.
+*   **Locates `.proto` Files:** The tool searches for all `.proto` files within the `src/protocols` directory.
+*   **Generates Documentation:** It then uses `protoc` with the `protoc-gen-doc` plugin to generate Markdown documentation from these `.proto` files.
+*   **Outputs to `docs` Directory:** The generated documentation is saved in the `docs` directory at the root of the project. If the `docs` directory exists, it will be completely removed before the new documentation is generated.
+*   **Cleans up** The temporary directory used to extract `protoc-gen-doc` is deleted automatically.
+
+### Viewing the generated documentation
+
+After running the command, you can view the generated documentation in the `docs/index.md` file. This file will contain detailed information about your gRPC services, messages, and their fields, all nicely formatted in Markdown.
