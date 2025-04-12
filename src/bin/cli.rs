@@ -4,7 +4,8 @@
 //! cargo or the rust toolchain.
 //!
 //! Where we use third party binaries, these should ideally be wrapped in this
-//! CLI, downloading the appropriate version repository's `/bin` directory.
+//! CLI, downloading the appropriate version to this repository's `/bin` 
+//! directory.
 //!
 //! For example, the `protoc-gen-doc` binary is used to generate API
 //! documentation, and this is wrapped in the `generate-api-docs` command.
