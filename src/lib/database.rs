@@ -1,11 +1,11 @@
 //! This module contains functions for creating and dropping databases, and for
 //! creating database pools.
 
+use crate::common::require_environment_variable;
 use log::info;
 use pg_escape::quote_identifier;
 use sqlx::postgres::PgConnectOptions;
 use sqlx::PgPool;
-use crate::common::require_environment_variable;
 
 /// Create a new SQLx database pool. This function reads the DATABASE_URL
 /// environment variable to determine the connection string to use.  If the
