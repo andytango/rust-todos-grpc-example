@@ -1,3 +1,4 @@
+pub mod api_docs;
 pub mod common;
 pub mod database;
 pub mod proto;
