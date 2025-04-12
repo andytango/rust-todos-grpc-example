@@ -10,7 +10,7 @@ use log::debug;
 use log::info;
 use std::io::ErrorKind;
 use tempfile::tempdir;
-use todos_service::init_common;
+use todos_service::common::init_common;
 use tokio::fs;
 use tokio::io::BufReader;
 use tokio_util::compat::TokioAsyncReadCompatExt;
