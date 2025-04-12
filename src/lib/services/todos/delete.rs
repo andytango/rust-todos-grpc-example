@@ -1,7 +1,21 @@
+//! # Delete Todo
+//!
+//! This module contains the implementation for deleting a todo.
 use crate::proto;
 use sqlx::query;
 use sqlx::PgPool;
 
+/// Delete a todo from the database.
+///
+/// # Arguments
+///
+/// * `pool` - The database pool to use.
+/// * `request` - The request containing the todo to delete.
+///
+/// # Returns
+///
+/// A `DeleteTodoResponse` indicating the todo was deleted.
+///
 pub async fn delete(
   pool: PgPool,
   request: proto::v1::todos::DeleteTodoRequest,

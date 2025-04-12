@@ -1,9 +1,23 @@
+//! # Create Todo
+//!
+//! This module contains the implementation for creating a new todo.
 use crate::proto;
 use crate::services::todos::common::TodoRow;
 use anyhow::anyhow;
 use sqlx::query_as;
 use sqlx::PgPool;
 
+
+/// Create a new todo in the database.
+///
+/// # Arguments
+///
+/// * `pool` - The database pool to use.
+/// * `request` - The request containing the todo to create.
+///
+/// # Returns
+///
+/// A `CreateTodoResponse` containing the created todo.
 pub async fn create_todo(
   pool: PgPool,
   request: proto::v1::todos::CreateTodoRequest,

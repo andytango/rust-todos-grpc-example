@@ -1,11 +1,24 @@
+//! # List Todos
+//!
+//! This module contains the implementation for listing all todos.
 use crate::proto;
 use crate::services::todos::common::TodoRow;
-use sqlx::PgPool;
 use sqlx::query_as;
+use sqlx::PgPool;
 
 /// List all todos. This function takes a database pool and a request object.
 /// The request object is not used in this implementation, but it could be used
 /// to implement pagination or filtering in the future.
+///
+///
+/// # Arguments
+///
+/// * `pool` - The database pool to use.
+/// * `request` - The request containing the todo to list.
+///
+/// # Returns
+///
+/// A `ListTodosResponse` containing the list of todos.
 pub async fn list_todos(
   pool: PgPool,
   _request: proto::v1::todos::ListTodosRequest,

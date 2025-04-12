@@ -1,3 +1,6 @@
+//! # Get Todo
+//!
+//! This module contains the implementation for getting a todo by its ID.
 use crate::proto;
 use crate::services::todos::common::TodoRow;
 use sqlx::query_as;
@@ -6,6 +9,16 @@ use sqlx::PgPool;
 /// Get a todo by its ID. This function takes a database pool and a request
 /// object. The request object contains the ID of the todo to retrieve.
 /// If the todo is not found, then the function will return an error.
+///
+/// # Arguments
+///
+/// * `pool` - The database pool to use.
+/// * `request` - The request containing the ID of the todo to retrieve.
+///
+/// # Returns
+///
+/// A `GetTodoResponse` containing the todo.
+///
 pub async fn get_todo(
   pool: PgPool,
   request: proto::v1::todos::GetTodoRequest,
@@ -33,7 +46,7 @@ pub async fn get_todo(
     request.todo_id
   ))?;
 
-  // Return the todo wrapped in a protobuf response. The TodoRecord is 
+  // Return the todo wrapped in a protobuf response. The TodoRecord is
   // automatically converted to a protobuf Todo, because we have defined the
   // Into trait for this conversion.
   Ok(proto::v1::todos::GetTodoResponse {

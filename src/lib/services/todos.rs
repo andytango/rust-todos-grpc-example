@@ -1,3 +1,8 @@
+//!
+//! # Todos Service
+//!
+//! This module contains the implementation for the todos service.
+//!
 mod common;
 mod create;
 mod delete;

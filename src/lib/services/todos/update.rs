@@ -1,3 +1,7 @@
+//!
+//! # Update Todo
+//!
+//! This module contains the implementation for updating a todo.
 use crate::proto;
 use crate::services::todos::common::TodoRow;
 use crate::update_mask_handler::UpdateMaskHandler;
@@ -5,6 +9,17 @@ use anyhow::anyhow;
 use sqlx::query_as;
 use sqlx::PgPool;
 
+/// Update a todo in the database.
+///
+/// # Arguments
+///
+/// * `pool` - The database pool to use.
+/// * `request` - The request containing the todo to update.
+///
+/// # Returns
+///
+/// A `UpdateTodoResponse` containing the updated todo.
+///
 pub async fn update_todo(
   pool: PgPool,
   request: proto::v1::todos::UpdateTodoRequest,

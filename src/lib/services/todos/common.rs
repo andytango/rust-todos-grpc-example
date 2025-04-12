@@ -1,6 +1,18 @@
+//! Common types and functions for the todos service.
+
 use crate::common::sql_datetime_to_proto_timestamp;
 use crate::proto;
 
+/// Represents a row in the `todos` table.
+///
+/// # Fields
+///
+/// * `todo_id` - The unique identifier of the todo.
+/// * `title` - The title of the todo.
+/// * `description` - The description of the todo.
+/// * `completed` - Whether the todo is completed.
+/// * `created_at` - The timestamp when the todo was created.
+/// * `updated_at` - The timestamp when the todo was last updated.
 pub struct TodoRow {
   pub todo_id: String,
   pub title: String,
@@ -10,6 +22,18 @@ pub struct TodoRow {
   pub updated_at: sqlx::types::time::OffsetDateTime,
 }
 
+/// Converts a `TodoRow` to a `proto::v1::todos::Todo`.
+///
+/// # Arguments
+///
+/// * `self` - The `TodoRow` to convert.
+///
+/// # Returns
+///
+/// A `proto::v1::todos::Todo` representing the `TodoRow`.
+///
+/// # Examples
+///
 impl Into<proto::v1::todos::Todo> for TodoRow {
   fn into(self) -> proto::v1::todos::Todo {
     proto::v1::todos::Todo {

@@ -1,3 +1,4 @@
+//! This module contains the generated protobuf code for the service
 pub mod v1 {
 
   pub mod todos {

@@ -1,3 +1,5 @@
+//! Common functions and types used throughout the application.
+
 use anyhow::anyhow;
 use sqlx::types::time::OffsetDateTime;
 
@@ -21,7 +23,7 @@ pub fn require_environment_variable(name: &str) -> anyhow::Result<String> {
 }
 
 /// Convert a SQL `OffsetDateTime` to a protobuf `Timestamp`.
-/// See https://buf.build/protocolbuffers/wellknowntypes/file/main:google/protobuf/timestamp.proto#L133
+/// See <https://buf.build/protocolbuffers/wellknowntypes/file/main:google/protobuf/timestamp.proto#L133>
 /// for more information.
 pub fn sql_datetime_to_proto_timestamp(
   time: OffsetDateTime,

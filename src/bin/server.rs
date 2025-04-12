@@ -60,8 +60,8 @@ async fn main() -> anyhow::Result<()> {
 /// tools like grpcurl.
 ///
 /// For more information, see:
-/// https://github.com/hyperium/tonic-reflection
-/// https://grpc.io/docs/guides/reflection
+/// <https://github.com/hyperium/tonic-reflection>
+/// <https://grpc.io/docs/guides/reflection>
 fn create_reflection_server(
 ) -> anyhow::Result<ServerReflectionServer<impl ServerReflection>> {
   let reflection_service = tonic_reflection::server::Builder::configure()
