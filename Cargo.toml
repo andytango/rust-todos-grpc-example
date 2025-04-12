@@ -4,11 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "server"
+name = "todos_server"
+path = "src/bin/server.rs"
 test = false
 
 [[bin]]
-name = "cli"
+name = "todos_cli"
+path = "src/bin/cli.rs"
 test = false
 
 [lib]
