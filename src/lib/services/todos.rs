@@ -82,8 +82,8 @@ impl TodoService for TodoServiceHandler {
     let response = create_todo(self.pool.clone(), request.into_inner())
       .await
       .map_err(|e| {
-        Status::internal(format!("Failed to create todo: \n{}", e.to_string()))
-      })?;
+      Status::internal(format!("Failed to create todo: \n{}", e.to_string()))
+    })?;
 
     Ok(Response::new(response))
   }
@@ -95,8 +95,8 @@ impl TodoService for TodoServiceHandler {
     let response = update_todo(self.pool.clone(), request.into_inner())
       .await
       .map_err(|e| {
-        Status::internal(format!("Failed to update todo: \n{}", e.to_string()))
-      })?;
+      Status::internal(format!("Failed to update todo: \n{}", e.to_string()))
+    })?;
 
     Ok(Response::new(response))
   }

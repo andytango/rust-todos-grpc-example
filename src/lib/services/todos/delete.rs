@@ -33,9 +33,9 @@ pub async fn delete(
     "#,
     todo_id
   )
-  .fetch_optional(&pool)
-  .await?
-  .ok_or(anyhow::anyhow!("Todo with id {} not found", todo_id))?;
+    .fetch_optional(&pool)
+    .await?
+    .ok_or(anyhow::anyhow!("Todo with id {} not found", todo_id))?;
 
   // Return the empty proto as a placeholder.
   Ok(proto::v1::todos::DeleteTodoResponse {})

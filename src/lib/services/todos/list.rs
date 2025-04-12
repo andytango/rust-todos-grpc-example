@@ -25,7 +25,7 @@ pub async fn list_todos(
 ) -> anyhow::Result<proto::v1::todos::ListTodosResponse> {
   // Query the database for all todos. We would normally include things like
   // pagination and filtering here, using values from the request object.
-  let result = query_as!(
+  let query = query_as!(
     TodoRow,
     r#"
     select todo_id,
@@ -37,16 +37,18 @@ pub async fn list_todos(
     from todos
     order by created_at desc
     "#
-  )
-  .fetch_all(&pool)
-  .await?
-  .into_iter()
-  // Each TodoRecord is automatically converted to a protobuf Todo by the
-  // `into()` method because we have defined the Into trait for this conversion.
-  .map(|r| r.into())
-  // The `collect()` method automatically converts the iterator to the expected
-  // vector type based on the downstream usage.
-  .collect();
+  );
+
+  let result = query
+    .fetch_all(&pool)
+    .await?
+    .into_iter()
+    // Each TodoRecord is automatically converted to a protobuf Todo by the
+    // `into()` method because we have defined the Into trait for this conversion.
+    .map(|r| r.into())
+    // The `collect()` method automatically converts the iterator to the expected
+    // vector type based on the downstream usage.
+    .collect();
 
   // Return the todos wrapped in a protobuf response.
   Ok(proto::v1::todos::ListTodosResponse { todos: result })
